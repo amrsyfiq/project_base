@@ -27,7 +27,6 @@ onMounted(() => {
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         ref="input"
-        placeholder="Your placeholder here"
     />
 </template>
 

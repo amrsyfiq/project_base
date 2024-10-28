@@ -23,12 +23,6 @@ class RolePermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $arrayOfPermissionNames = [
-            //Device
-            // ['name'  => 'view.device', 'description'  => 'View Device', 'group'  => 'Device'],
-            // ['name'  => 'create.device', 'description'  => 'Create Device', 'group'  => 'Device'],
-            // ['name'  => 'edit.device', 'description'  => 'Edit Device', 'group'  => 'Device'],
-            // ['name'  => 'delete.device', 'description'  => 'Delete Device', 'group'  => 'Device'],
-
             //User
             ['name'  => 'view.user', 'description'  => 'View User', 'group'  => 'User'],
             ['name'  => 'create.user', 'description'  => 'Create User', 'group'  => 'User'],
