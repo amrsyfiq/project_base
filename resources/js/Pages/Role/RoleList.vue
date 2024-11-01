@@ -4,14 +4,13 @@ import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 // import AppLayout from '@/Layouts/AppLayout.vue';
 import Layout from '@/Layouts/AuthenticatedLayout.vue';
 import SubHeader from '@/Layouts/SubHeader.vue';
-import AirDatatable from '@/Components/AirDatatable.vue';
+import Datatable from '@/Components/Datatable.vue';
 import moment from 'moment';
 import Swal from 'sweetalert2';
-import AirModal from '@/Components/AirModal.vue';
+import Modal from '@/Components/Modal.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
+import Button from '@/Components/Button.vue';
 import Input from '@/Components/Input.vue';
 
 const columns = ref([
@@ -78,7 +77,7 @@ const removeRole = (id) => {
             <div class="pt-4 pb-12">
                 <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                        <AirDatatable ref="datatable" api-url="role.filter" :columns="columns"
+                        <Datatable ref="datatable" api-url="role.filter" :columns="columns"
                             :enable-create="permission['create.role']" @on-create="openModal" sort-by="created_at">
                             <template #data="role">
                                 <td scope="row" class="p-2 font-normal text-gray-900 whitespace-nowrap dark:text-white">
@@ -112,13 +111,13 @@ const removeRole = (id) => {
                                     </button>
                                 </td>
                             </template>
-                        </AirDatatable>
+                        </Datatable>
                     </div>
                 </div>
             </div>
         </SubHeader>
 
-        <AirModal :show="form.show" @close="closeModal">
+        <Modal :show="form.show" @close="closeModal">
             <template #title>
                 Add New Role
             </template>
@@ -130,15 +129,15 @@ const removeRole = (id) => {
                     <InputError :message="form.errors.name" class="mt-2" />
 
                     <div class="flex flex-row items-center justify-end gap-x-2 mt-4">
-                        <SecondaryButton @click="closeModal">
+                        <Button :color="'secondary'" @click="closeModal">
                             Cancel
-                        </SecondaryButton>
-                        <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        </Button>
+                        <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Submit
-                        </PrimaryButton>
+                        </Button>
                     </div>
                 </form>
             </template>
-        </AirModal>
+        </Modal>
     </Layout>
 </template>

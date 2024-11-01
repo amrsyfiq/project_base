@@ -4,13 +4,12 @@ import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 // import AppLayout from '@/Layouts/AppLayout.vue';
 import Layout from '@/Layouts/AuthenticatedLayout.vue';
 import SubHeader from '@/Layouts/SubHeader.vue';
-import AirDatatable from '@/Components/AirDatatable.vue';
+import Datatable from '@/Components/Datatable.vue';
 import moment from 'moment';
-import AirModal from '@/Components/AirModal.vue';
+import Modal from '@/Components/Modal.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
+import Button from '@/Components/Button.vue';
 import Input from '@/Components/Input.vue';
 import SectionTitle from '@/Components/SectionTitle.vue';
 

@@ -3,12 +3,10 @@ import { reactive, ref, onMounted, inject } from 'vue';
 import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import Layout from '@/Layouts/AuthenticatedLayout.vue';
 import SubHeader from '@/Layouts/SubHeader.vue';
-import AirDatatable from '@/Components/AirDatatable.vue';
-import AirModal from '@/Components/AirModal.vue';
+import Datatable from '@/Components/Datatable.vue';
+import Modal from '@/Components/Modal.vue';
 import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
+import Button from '@/Components/Button.vue';
 import FormRow from '@/Components/FormRow.vue';
 import InputRow from '@/Components/InputRow.vue';
 import Input from '@/Components/Input.vue';
@@ -120,7 +118,7 @@ const formatCurrency = (value) => {
                     <div class="bg-white dark:bg-gray-800 dark:text-gray-300 overflow-hidden shadow-xl sm:rounded-lg p-8">
                         <div class="mb-6">
                             <span class="font-bold text-xl">Datatable with Modal</span>
-                            <AirDatatable ref="datatable" api-url="component.filter" :columns="columns"
+                            <Datatable ref="datatable" api-url="component.filter" :columns="columns"
                                 :enable-create="true" @on-create="openModal" sort-by="created_at" class="mt-6">
                                 <template #data="component">
                                     <td scope="row" class="p-2 font-semibold text-gray-900 whitespace-nowrap dark:text-gray-300">
@@ -149,7 +147,7 @@ const formatCurrency = (value) => {
                                         </button>
                                     </td>
                                 </template>
-                            </AirDatatable>
+                            </Datatable>
                         </div>
                         <div class="mt-12">
                             <span class="font-bold text-xl">Forms Input Field</span>
@@ -820,23 +818,25 @@ const formatCurrency = (value) => {
         </SubHeader>
     </Layout>
 
-    <AirModal :show="form.show" @close="closeModal">
+    <Modal :show="form.show" @close="closeModal">
         <template #title>
             Add New User
         </template>
 
         <template #content>
-            <form @submit.prevent="addComponent">
+            <FormRow>
                 <InputRow for="item" label="Item" >
-                    <Input id="item" v-model="form.item" type="text" class="mt-1 block w-full" required />
+                    <Input id="item" v-model="form.item" type="text" class="block w-full" required />
                     <InputError :message="form.errors.item" class="mt-2" />
                 </InputRow>
 
                 <InputRow for="color" label="Color" >
-                    <Input id="color" v-model="form.color" type="text" class="mt-1 block w-full" required />
+                    <Input id="color" v-model="form.color" type="text" class="block w-full" required />
                     <InputError :message="form.errors.color" class="mt-2" />
                 </InputRow>
+            </FormRow>
 
+            <FormRow>
                 <InputRow for="category" label="Category">
                     <Select class="mt-1" :options="categories" v-model="form.category"
                         :get-option-label="option => option.name" :reduce="option => option.name">
@@ -848,16 +848,15 @@ const formatCurrency = (value) => {
                     <Input id="price" v-model="form.price" type="text" class="mt-1 block w-full" required />
                     <InputError :message="form.errors.price" class="mt-2" />
                 </InputRow>
-                
-                <div class="flex flex-row items-center justify-end gap-x-2 mt-4">
-                    <SecondaryButton @click="closeModal">
-                        Cancel
-                    </SecondaryButton>
-                    <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Submit
-                    </PrimaryButton>
-                </div>
-            </form>
+            </FormRow>
         </template>
-    </AirModal>
+        <template #footer>
+            <Button :color="'secondary'" @click="closeModal">
+                Cancel
+            </Button>
+            <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="addComponent">
+                Submit
+            </Button>
+        </template>
+    </Modal>
 </template>

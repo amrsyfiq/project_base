@@ -25,7 +25,7 @@ const props = defineProps({
 
 </script>
 <template>
-    <div class="w-full items-center mt-4">
+    <div class="w-full items-center">
         <div v-if="label">
             <InputLabel :for="forLabel" :color="color">
                 <span v-if="label">{{ label }}</span>

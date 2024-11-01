@@ -24,7 +24,6 @@ const select2 = ref(null);
                 :required="!isRequired"
                 v-bind="attributes"
                 v-on="events"
-                
             />
         </template>
     </v-select>
