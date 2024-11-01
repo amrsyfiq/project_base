@@ -5,6 +5,7 @@ import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import Layout from '@/Layouts/AuthenticatedLayout.vue';
 import SubHeader from '@/Layouts/SubHeader.vue';
 import Datatable from '@/Components/Datatable.vue';
+import Select from '@/Components/Select.vue';
 import moment from 'moment';
 import Modal from '@/Components/Modal.vue';
 import InputError from '@/Components/InputError.vue';
@@ -132,12 +133,12 @@ const removeUser = (id) => {
                 <InputError :message="form.errors.email" class="mt-2" />
 
                 <InputLabel for="role" value="Role" class="mt-2" />
-                <v-select class="mt-1" :options="roles" v-model="form.role"
+                <Select class="mt-1" :options="roles" v-model="form.role"
                     :get-option-label="option => option.description" :reduce="option => option.id">
                     <template #search="{ attributes, events }">
                         <input class="vs__search" :required="!form.role" v-bind="attributes" v-on="events" />
                     </template>
-                </v-select>
+                </Select>
                 <InputError :message="form.errors.role" class="mt-2" />
 
                 <div class="flex flex-row items-center justify-end gap-x-2 mt-4">
