@@ -23,6 +23,9 @@ class RolePermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $arrayOfPermissionNames = [
+            //Admin Settings
+            ['name'  => 'view.admin', 'description'  => 'View Admin Settings', 'group'  => 'Admin'],
+
             //User
             ['name'  => 'view.user', 'description'  => 'View User', 'group'  => 'User'],
             ['name'  => 'create.user', 'description'  => 'Create User', 'group'  => 'User'],
@@ -38,9 +41,9 @@ class RolePermissionSeeder extends Seeder
 
         $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {
             return [
-                'name' => $permission['name'], 
-                'description' => $permission['description'], 
-                'guard_name' => 'web', 
+                'name' => $permission['name'],
+                'description' => $permission['description'],
+                'guard_name' => 'web',
                 'group' => $permission['group']
             ];
         });
@@ -49,16 +52,16 @@ class RolePermissionSeeder extends Seeder
 
         $arrayOfRoleNames = [
             ['name'  => 'super-admin', 'description'  => 'Super Admin'],
-            ['name'  => 'manager', 'description'  => 'Manager'],
-            ['name'  => 'engineer', 'description'  => 'Engineer'],
+            ['name'  => 'admin', 'description'  => 'Admin'],
+            ['name'  => 'user', 'description'  => 'User'],
             ['name'  => 'visitor', 'description'  => 'Visitor'],
         ];
 
         $roles = collect($arrayOfRoleNames)->map(function ($role) {
             return [
-                'name' => $role['name'], 
-                'description' => $role['description'], 
-                'guard_name' => 'web', 
+                'name' => $role['name'],
+                'description' => $role['description'],
+                'guard_name' => 'web',
             ];
         });
 

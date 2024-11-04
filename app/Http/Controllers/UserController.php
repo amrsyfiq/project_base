@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(Request $request){
-        $roles = Role::all();
+        $roles = Role::when(!auth()->user()->hasRole('super-admin'), function ($query) {
+            $query->where('name', '!=', 'super-admin');
+        })->get();
 
         return Inertia::render('User/UserList', compact('roles'));
     }

@@ -97,13 +97,13 @@ const removeUser = (id) => {
                                     {{ moment(user.created_at).format('Do MMMM YYYY') }}
                                 </td>
                                 <td scope="row" class="p-2 font-normal text-gray-900 whitespace-nowrap dark:text-white w-0">
-                                    <!-- <Link :href="route('device.view',user.id)">
-                                        <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-4 py-2 text-center me-2">
-                                            View
-                                        </button>
-                                    </Link> -->
+                                    <Link :href="route('profile.edit', user.id)" class="cursor-pointer transition-all bg-blue-500 text-white text-sm px-5 py-2 rounded-lg
+                                        border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] 
+                                        active:border-b-[2px] active:brightness-90 active:translate-y-[2px] me-2">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </Link>
                                     <button v-if="permission['delete.user']" type="button" @click="removeUser(user.id)"
-                                        :disabled="form.processing" class="cursor-pointer transition-all bg-red-500 text-white text-sm px-6 py-2 rounded-lg
+                                        :disabled="form.processing" class="cursor-pointer transition-all bg-red-500 text-white text-sm px-5 py-2 rounded-lg
                                     border-red-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] 
                                     active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
                                         <i class="fa-solid fa-trash"></i>
@@ -123,33 +123,33 @@ const removeUser = (id) => {
         </template>
 
         <template #content>
-            <form @submit.prevent="addUser">
-                <InputLabel for="name" value="Name" />
-                <Input id="name" v-model="form.name" type="text" class="mt-1 block w-full" required />
-                <InputError :message="form.errors.name" class="mt-2" />
+            <InputLabel for="name" value="Name" />
+            <Input id="name" v-model="form.name" type="text" class="mt-1 block w-full" required />
+            <InputError :message="form.errors.name" class="mt-2" />
 
-                <InputLabel for="email" value="Email" class="mt-2" />
-                <Input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required />
-                <InputError :message="form.errors.email" class="mt-2" />
+            <InputLabel for="email" value="Email" class="mt-2" />
+            <Input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required />
+            <InputError :message="form.errors.email" class="mt-2" />
 
-                <InputLabel for="role" value="Role" class="mt-2" />
-                <Select class="mt-1" :options="roles" v-model="form.role"
-                    :get-option-label="option => option.description" :reduce="option => option.id">
-                    <template #search="{ attributes, events }">
-                        <input class="vs__search" :required="!form.role" v-bind="attributes" v-on="events" />
-                    </template>
-                </Select>
-                <InputError :message="form.errors.role" class="mt-2" />
+            <InputLabel for="role" value="Role" class="mt-2" />
+            <Select class="mt-1" :options="roles" v-model="form.role"
+                :get-option-label="option => option.description" :reduce="option => option.id">
+                <template #search="{ attributes, events }">
+                    <input class="vs__search" :required="!form.role" v-bind="attributes" v-on="events" />
+                </template>
+            </Select>
+            <InputError :message="form.errors.role" class="mt-2" />
 
-                <div class="flex flex-row items-center justify-end gap-x-2 mt-4">
-                    <Button :color="'secondary'" @click="closeModal">
-                        Cancel
-                    </Button>
-                    <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Submit
-                    </Button>
-                </div>
-            </form>
+            <div class="flex flex-row items-center justify-end gap-x-2 mt-4">
+            </div>
+        </template>
+        <template #footer>
+            <Button :color="'secondary'" @click="closeModal">
+                Cancel
+            </Button>
+            <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="addUser">
+                Submit
+            </Button>
         </template>
     </Modal>
 </template>

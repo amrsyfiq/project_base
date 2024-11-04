@@ -29,7 +29,8 @@ class RoleController extends Controller
         $sort_direction = $request->input('sort_direction', 'desc');
         $sort_field = $request->input('sort_field', 'updated_at');
 
-        $role = Role::when($search, function ($query, $search) {
+        $role = Role::whereNot('name', 'super-admin')
+        ->when($search, function ($query, $search) {
             $query->where('name', 'like', '%'.$search.'%')
                 ->orWhere('description', 'like', '%'.$search.'%');
             })
