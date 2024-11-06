@@ -10,8 +10,30 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import vSelect from "vue-select";
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
+import FileUpload from 'primevue/fileupload';
+import { definePreset } from '@primevue/themes';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Axon';
+
+const MyPreset = definePreset(Aura, {
+    semantic: {
+        primary: {
+            50: '{gray.50}',
+            100: '{gray.100}',
+            200: '{gray.200}',
+            300: '{gray.300}',
+            400: '{gray.400}',
+            500: '{gray.500}',
+            600: '{gray.600}',
+            700: '{gray.700}',
+            800: '{gray.800}',
+            900: '{gray.900}',
+            950: '{gray.950}'
+        }
+    }
+});
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -20,6 +42,19 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(PrimeVue, {
+                theme: {
+                    preset: MyPreset,
+                    options: {
+                        darkModeSelector: '.dark',
+                    },
+                    colorScheme: {
+                        dark: {
+                            primary: {}
+                        }
+                    }
+                }
+            })
             .component("v-select", vSelect)
             .mount(el);
     },
