@@ -8,6 +8,13 @@ const dropdown = reactive({
     menu: false
 })
 
+const props = defineProps({
+    menuBar : {
+        type: Boolean,
+        default: false
+    }
+})
+
 watchEffect(() => {
     if (route().current('user') || route().current('role')) {
         dropdown.admin = true
@@ -19,7 +26,7 @@ const permission = reactive(usePage().props.can);
 <template>
     <aside id="sidebar-multi-level-sidebar"
     class="fixed top-0 left-0 z-40 w-64 shadow-md h-screen transition-transform sm:translate-x-0"
-    :class="{ '-translate-x-full': !dropdown.menu }">
+    :class="{ '-translate-x-full': !props.menuBar }">
         <div class="h-full mt-16 px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800">
             <div class="flex mb-5 sm:hidden">
                 <!-- Logo -->
