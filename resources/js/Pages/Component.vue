@@ -114,8 +114,8 @@ const formatCurrency = (value) => {
     <Layout title="Component">
         <SubHeader menu="Component">
             <div class="pt-4 pb-12">
-                <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white dark:bg-gray-800 dark:text-gray-300 overflow-hidden shadow-xl sm:rounded-lg p-8">
+                <div class="max-w-8xl mx-auto">
+                    <div class="bg-white dark:bg-gray-800 dark:text-gray-300 overflow-hidden shadow sm:rounded-lg p-8">
                         <div class="mb-6">
                             <span class="font-bold text-xl">Datatable with Modal</span>
                             <Datatable ref="datatable" api-url="component.filter" :columns="columns"

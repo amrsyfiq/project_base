@@ -24,7 +24,7 @@ const getData = (value) => {
         <Sidebar :menuBar="dropdown.menu"/>
 
         <!-- Page Content -->
-        <div class="pt-16 px-8 relative w-full h-full flex flex-col min-h-screen overflow-y-auto bg-gray-50 sm:ml-64 dark:bg-gray-900">
+        <div class="pt-16 px-16 relative w-full h-full flex flex-col min-h-screen overflow-y-auto bg-gray-50 sm:ml-64 dark:bg-gray-900">
             <main>
                 <slot />
             </main>

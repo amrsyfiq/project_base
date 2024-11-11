@@ -32,7 +32,7 @@ const showingNavigationDropdown = ref(false);
     <nav
         class="fixed top-0 z-50 w-full bg-white shadow-md dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
         <!-- Primary Navigation Menu -->
-        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-full mx-auto px-4">
             <div class="flex justify-between flex-row-reverse sm:flex-row h-16">
                 <div class="hidden sm:flex">
                     <!-- Logo -->

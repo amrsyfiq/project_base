@@ -40,7 +40,7 @@ const updatePermission = (id) => {
             </template>
     
             <div class="pt-4 pb-12">
-                <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+                <div class="max-w-8xl mx-auto">
                     <div class="bg-white p-6 dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-xl">
                         <div class="flex flex-row p-4">
                             <div class="w-1/2">

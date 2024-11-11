@@ -75,8 +75,8 @@ const removeRole = (id) => {
         <SubHeader menu="Role">
             
             <div class="pt-4 pb-12">
-                <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="max-w-8xl mx-auto">
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                         <Datatable ref="datatable" api-url="role.filter" :columns="columns"
                             :enable-create="permission['create.role']" @on-create="openModal" sort-by="created_at">
                             <template #data="role">
