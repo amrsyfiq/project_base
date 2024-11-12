@@ -13,6 +13,22 @@ const props = defineProps({
     color: {
         type: String,
         default: null,
+    },
+    type: {
+        type: String,
+        default: 'text',
+    },
+    step: {
+        type: String,
+        default: 'text',
+    },
+    inputLabel: {
+        type: String,
+        default: null,
+    },
+    inputIcon: {
+        type: String,
+        default: null,
     }
 });
 
@@ -27,7 +43,7 @@ onMounted(() => {
 });
 
 // Common base classes for all inputs
-const baseClasses = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:cursor-not-allowed';
+const baseClasses = 'bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:cursor-not-allowed';
 
 // Color-specific classes
 const colorClasses = {
@@ -39,10 +55,16 @@ const colorClasses = {
 </script>
 
 <template>
-    <input
-        :class="[baseClasses, colorClasses[color] || '']"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        ref="input"
-    />
+    <div class="flex flex-row p-0 border-none dark:bg-gray-800">
+        <div v-if="inputLabel || inputIcon" class="flex w-14 bg-gray-50 dark:bg-gray-600 text-xs uppercase text-gray-600 dark:text-gray-300 font-extrabold border-y border-l border-gray-300 dark:border-gray-400 px-4 justify-center items-center text-center rounded-l-lg">
+            <span v-if="inputLabel">{{ inputLabel }}</span>
+            <span v-if="inputIcon"><i :class="inputIcon"></i></span>
+        </div>
+        <input
+            :class="[baseClasses, colorClasses[color] || '', inputLabel || inputIcon ? 'rounded-l-none' : '']"
+            :value="modelValue" :type="type" :step="step"
+            @input="$emit('update:modelValue', $event.target.value)"
+            ref="input"
+        />
+    </div>
 </template>
